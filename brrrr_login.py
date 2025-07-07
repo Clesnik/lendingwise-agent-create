@@ -5,7 +5,7 @@ def main(branch_id, username, password):
     url = "https://app.brrrr.com/backoffice/LMRequest.php?eOpt=0&cliType=PC&tabOpt=QAPP&moduleCode=HMLO&supp=help"
     print(f"[INFO] Launching browser and navigating to {url}")
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         context = browser.new_context()
         page = context.new_page()
         page.goto(url)
@@ -37,7 +37,6 @@ def main(branch_id, username, password):
             print(f"[ERROR] Timeout waiting for element: {e}")
         except Exception as e:
             print(f"[ERROR] {e}")
-        input("Press Enter to close the browser...")
         browser.close()
 
 if __name__ == "__main__":
