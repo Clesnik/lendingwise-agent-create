@@ -28,6 +28,11 @@ def main(branch_id, username, password):
             page.wait_for_url("https://app.brrrr.com/backoffice/LMRequest*", timeout=15000)
             print("[INFO] Login successful, now selecting branch")
             page.wait_for_selector('select#branchId', timeout=10000)
+            # Debug: Print all options in the branch dropdown
+            branch_options = page.query_selector_all('select#branchId option')
+            print("[DEBUG] Available branches:")
+            for option in branch_options:
+                print(option.inner_text())
             result = page.select_option('select#branchId', value=branch_id)
             if not result or result[0] != branch_id:
                 print(f"[ERROR] Branch ID '{branch_id}' not found in dropdown!")
@@ -44,4 +49,4 @@ if __name__ == "__main__":
     username = "clesnik@brrrr.com"
     password = "Lesnik$"
     branch_id = "BrrrrLoans"
-    main(branch_id, username, password) 
+    main(branch_id, username, password)
