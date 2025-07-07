@@ -48,5 +48,5 @@ if __name__ == "__main__":
     # For testing, use hardcoded credentials and branch_id
     username = "clesnik@brrrr.com"
     password = "Lesnik$"
-    branch_id = "BrrrrLoans"
+    branch_id = "c533ddb5d31a172"
     main(branch_id, username, password)
