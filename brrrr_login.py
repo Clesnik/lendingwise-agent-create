@@ -33,7 +33,7 @@ def main(branch_id, username, password):
             print("[DEBUG] Available branches:")
             for option in branch_options:
                 print(option.inner_text())
-            result = page.select_option('select#branchId', label=branch_id)
+            result = page.select_option('select#branchId', value=branch_id)
             if not result or result[0] != branch_id:
                 print(f"[ERROR] Branch ID '{branch_id}' not found in dropdown!")
             else:
