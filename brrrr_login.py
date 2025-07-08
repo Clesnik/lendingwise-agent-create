@@ -737,11 +737,5 @@ async def run_playwright(request: Request):
     return {"stdout": result.stdout, "stderr": result.stderr}
 
 if __name__ == "__main__":
-    import sys, json
-    if len(sys.argv) > 1:
-        print("sys.argv:", sys.argv)
-        with open(sys.argv[1]) as f:
-            data = json.load(f)
-        main(**data)
-    else:
-        print("No input JSON file specified. Skipping direct run.")
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
