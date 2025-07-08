@@ -747,4 +747,11 @@ async def run_playwright(request: Request):
 
 if __name__ == "__main__":
     import sys
-    main(*sys.argv[1:])
+    import json
+
+    if len(sys.argv) > 1 and sys.argv[1].endswith(".json"):
+        with open(sys.argv[1]) as f:
+            data = json.load(f)
+            main(**data)
+    else:
+        print("No input JSON file specified. Skipping direct run.")
