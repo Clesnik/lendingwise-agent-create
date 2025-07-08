@@ -1,7 +1,41 @@
 import sys
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
-def main(branch_id, username, password):
+def main(
+    branch_id, username, password, pg_one_fico_range,
+    secondary_agent, loan_program, internal_program, prop_process, primary_status,
+    lead_source, referring_party, pg_one_fname, pg_one_mname, pg_one_lname, pg_one_email, pg_one_cell,
+    pg_one_work, pg_one_street, pg_one_unit, pg_one_city, pg_one_state, pg_one_zip, pg_one_county, pg_one_country,
+    mailing_street, mailing_unit, mailing_city, mailing_state, mailing_zip, mailing_country,
+    pg_one_dob, pg_one_ssn, pg_one_marital_status, pg_one_citizenship, pg_one_mid_fico,
+    borrower_type, entity_name, trade_name, entity_type, date_of_formation, state_of_formation, ein_number,
+    business_phone, entity_address, entity_city, entity_state, entity_zip,
+    member_name_zero, member_title_zero, member_ownership_zero, member_address_zero, member_cell_zero,
+    member_ssn_zero, member_dob_zero, member_email_zero, member_fico_score_zero, member_guarantor_zero, member_citizenship_zero,
+    member_name_one, member_title_one, member_ownership_one, member_address_one, member_cell_one,
+    member_ssn_one, member_dob_one, member_email_one, member_fico_score_one, member_guarantor_one, member_citizenship_one,
+    member_name_two, member_title_two, member_ownership_two, member_address_two, member_cell_two,
+    member_ssn_two, member_dob_two, member_email_two, member_fico_score_two, member_guarantor_two, member_citizenship_two,
+    member_name_three, member_title_three, member_ownership_three, member_address_three, member_cell_three,
+    member_ssn_three, member_dob_three, member_email_three, member_fico_score_three, member_guarantor_three, member_citizenship_three,
+    member_name_four, member_title_four, member_ownership_four, member_address_four, member_cell_four,
+    member_ssn_four, member_dob_four, member_email_four, member_fico_score_four, member_guarantor_four, member_citizenship_four,
+    member_name_five, member_title_five, member_ownership_five, member_address_five, member_cell_five,
+    member_ssn_five, member_dob_five, member_email_five, member_fico_score_five, member_guarantor_five, member_citizenship_five,
+    lb_contact_name, lb_contact_email, lb_contact_phone, monthly_hoa_fees, actual_rents_in_place, spcf_hoafees,
+    title_seller, title_name, title_order_number, pro_ins_first_name_1, pro_ins_last_name_1, pro_ins_name_1,
+    pro_inc_email_1, pro_inc_ph_1,
+    unit_type_1_1, unit_num_1_1, sq_ft_1_1, rent_roll_market_rents_1_1, rent_roll_actual_rents_1_1, rent_roll_monthly_rent_1_1,
+    unit_type_1_2, unit_num_1_2, sq_ft_1_2, rent_roll_market_rents_1_2, rent_roll_actual_rents_1_2, rent_roll_monthly_rent_1_2,
+    unit_type_1_3, unit_num_1_3, sq_ft_1_3, rent_roll_market_rents_1_3, rent_roll_actual_rents_1_3, rent_roll_monthly_rent_1_3,
+    unit_type_1_4, unit_num_1_4, sq_ft_1_4, rent_roll_market_rents_1_4, rent_roll_actual_rents_1_4, rent_roll_monthly_rent_1_4,
+    unit_type_1_5, unit_num_1_5, sq_ft_1_5, rent_roll_market_rents_1_5, rent_roll_actual_rents_1_5, rent_roll_monthly_rent_1_5,
+    unit_type_1_6, unit_num_1_6, sq_ft_1_6, rent_roll_market_rents_1_6, rent_roll_actual_rents_1_6, rent_roll_monthly_rent_1_6,
+    unit_type_1_7, unit_num_1_7, sq_ft_1_7, rent_roll_market_rents_1_7, rent_roll_actual_rents_1_7, rent_roll_monthly_rent_1_7,
+    unit_type_1_8, unit_num_1_8, sq_ft_1_8, rent_roll_market_rents_1_8, rent_roll_actual_rents_1_8, rent_roll_monthly_rent_1_8,
+    unit_type_1_9, unit_num_1_9, sq_ft_1_9, rent_roll_market_rents_1_9, rent_roll_actual_rents_1_9, rent_roll_monthly_rent_1_9,
+    unit_type_1_10, unit_num_1_10, sq_ft_1_10, rent_roll_market_rents_1_10, rent_roll_actual_rents_1_10, rent_roll_monthly_rent_1_10
+):
     url = "https://app.brrrr.com/backoffice/LMRequest.php?eOpt=0&cliType=PC&tabOpt=QAPP&moduleCode=HMLO&supp=help"
     print(f"[INFO] Launching browser and navigating to {url}")
     with sync_playwright() as p:
@@ -46,120 +80,6 @@ def main(branch_id, username, password):
                     print(option.inner_text())
 
             # --- Additional actions after branch selection ---
-            secondary_agent = "Chris Lesnik - Clesnik@brrrr.com"
-            loan_program = "DSCR - Rental - Long Term (LTR)"
-            internal_program = "BPL - DSCR - 1-8 - Purchase"
-            prop_process = "Have Property Under Contract"
-            primary_status = "83239"
-            lead_source = "Broker"
-            referring_party = "Allen Wu"
-            pg_one_fname = "Chris"
-            pg_one_mname = "George"
-            pg_one_lname = "Lesnik"
-            pg_one_email = "cglesnik@gmail.com"
-            pg_one_cell = "7328040939"
-            
-            # Additional borrower information variables
-            pg_one_work = "7329259148"
-            pg_one_street = "15 Burr Ave"
-            pg_one_unit = "1"
-            pg_one_city = "Morganville"
-            pg_one_state = "New Jersey"
-            pg_one_zip = "07751"
-            pg_one_county = "Monmouth"
-            pg_one_country = "United States"
-            mailing_street = "15 Burr Ave"
-            mailing_unit = "1"
-            mailing_city = "Morganville"
-            mailing_state = "New Jersey"
-            mailing_zip = "07751"
-            mailing_country = "United States"
-            pg_one_dob = "01/18/2001"
-            pg_one_ssn = "123456789"
-            pg_one_marital_status = "maritalStatus_1"
-            pg_one_citizenship = "borrowerCitizenship_0"
-            pg_one_mid_fico = "720"
-
-            # Placeholders for new variables used in additional actions
-            pg_one_fico_range = "700-749"
-            borrower_type = "Individual"
-            entity_name = "Test Entity LLC"
-            trade_name = "Test Trade Name"
-            entity_type = "LLC"
-            date_of_formation = "01/01/2020"
-            state_of_formation = "New Jersey"
-            ein_number = "12-3456789"
-            business_phone = "7325551234"
-            entity_address = "123 Main St"
-            entity_city = "Morganville"
-            entity_state = "New Jersey"
-            entity_zip = "07751"
-            member_name_zero = "Member Zero"
-            member_title_zero = "Manager"
-            member_ownership_zero = "100"
-            member_address_zero = "123 Main St"
-            member_cell_zero = "7325550000"
-            member_ssn_zero = "111223333"
-            member_dob_zero = "01/01/1980"
-            member_email_zero = "member0@example.com"
-            member_fico_score_zero = "720"
-            member_guarantor_zero = "guarantor_0"
-            member_citizenship_zero = "citizenship_0"
-            member_name_one = "Member One"
-            member_title_one = "Member"
-            member_ownership_one = "50"
-            member_address_one = "124 Main St"
-            member_cell_one = "7325550001"
-            member_ssn_one = "111223334"
-            member_dob_one = "02/02/1981"
-            member_email_one = "member1@example.com"
-            member_fico_score_one = "710"
-            member_guarantor_one = "guarantor_1"
-            member_citizenship_one = "citizenship_1"
-            member_name_two = "Member Two"
-            member_title_two = "Member"
-            member_ownership_two = "25"
-            member_address_two = "125 Main St"
-            member_cell_two = "7325550002"
-            member_ssn_two = "111223335"
-            member_dob_two = "03/03/1982"
-            member_email_two = "member2@example.com"
-            member_fico_score_two = "705"
-            member_guarantor_two = "guarantor_2"
-            member_citizenship_two = "citizenship_2"
-            member_name_three = "Member Three"
-            member_title_three = "Member"
-            member_ownership_three = "25"
-            member_address_three = "126 Main St"
-            member_cell_three = "7325550003"
-            member_ssn_three = "111223336"
-            member_dob_three = "04/04/1983"
-            member_email_three = "member3@example.com"
-            member_fico_score_three = "700"
-            member_guarantor_three = "guarantor_3"
-            member_citizenship_three = "citizenship_3"
-            member_name_four = "Member Four"
-            member_title_four = "Member"
-            member_ownership_four = "10"
-            member_address_four = "127 Main St"
-            member_cell_four = "7325550004"
-            member_ssn_four = "111223337"
-            member_dob_four = "05/05/1984"
-            member_email_four = "member4@example.com"
-            member_fico_score_four = "695"
-            member_guarantor_four = "guarantor_4"
-            member_citizenship_four = "citizenship_4"
-            member_name_five = "Member Five"
-            member_title_five = "Member"
-            member_ownership_five = "5"
-            member_address_five = "128 Main St"
-            member_cell_five = "7325550005"
-            member_ssn_five = "111223338"
-            member_dob_five = "06/06/1985"
-            member_email_five = "member5@example.com"
-            member_fico_score_five = "690"
-            member_guarantor_five = "guarantor_5"
-            member_citizenship_five = "citizenship_5"
 
             # Select secondary agent by passed-in label
             result = page.select_option('select#secondaryAgentId', label=secondary_agent)
@@ -522,82 +442,6 @@ def main(branch_id, username, password):
                 page.click(f'label[for="{member_citizenship_five}"]')
                 print(f"[INFO] Member 5 citizenship '{member_citizenship_five}' selected.")
 
-            # Placeholders for new values
-            lb_contact_name = "Joe Smith"
-            lb_contact_email = "Joesmith@gmail.com"
-            lb_contact_phone = "7329725984"
-            unit_type_1_1 = "Residential"
-            unit_num_1_1 = "1"
-            sq_ft_1_1 = "2200"
-            rent_roll_market_rents_1_1 = "2200"
-            rent_roll_actual_rents_1_1 = "2200"
-            rent_roll_monthly_rent_1_1 = "2200"
-            unit_type_1_2 = "Residential"
-            unit_num_1_2 = "1"
-            sq_ft_1_2 = "2200"
-            rent_roll_market_rents_1_2 = "2200"
-            rent_roll_actual_rents_1_2 = "2200"
-            rent_roll_monthly_rent_1_2 = "2200"
-            unit_type_1_3 = "Residential"
-            unit_num_1_3 = "1"
-            sq_ft_1_3 = "2200"
-            rent_roll_market_rents_1_3 = "2200"
-            rent_roll_actual_rents_1_3 = "2200"
-            rent_roll_monthly_rent_1_3 = "2200"
-            unit_type_1_4 = "Residential"
-            unit_num_1_4 = "1"
-            sq_ft_1_4 = "2200"
-            rent_roll_market_rents_1_4 = "2200"
-            rent_roll_actual_rents_1_4 = "2200"
-            rent_roll_monthly_rent_1_4 = "2200"
-            unit_type_1_5 = "Residential"
-            unit_num_1_5 = "1"
-            sq_ft_1_5 = "2200"
-            rent_roll_market_rents_1_5 = "2200"
-            rent_roll_actual_rents_1_5 = "2200"
-            rent_roll_monthly_rent_1_5 = "2200"
-            unit_type_1_6 = "Residential"
-            unit_num_1_6 = "1"
-            sq_ft_1_6 = "2200"
-            rent_roll_market_rents_1_6 = "2200"
-            rent_roll_actual_rents_1_6 = "2200"
-            rent_roll_monthly_rent_1_6 = "2200"
-            unit_type_1_7 = "Residential"
-            unit_num_1_7 = "1"
-            sq_ft_1_7 = "2200"
-            rent_roll_market_rents_1_7 = "2200"
-            rent_roll_actual_rents_1_7 = "2200"
-            rent_roll_monthly_rent_1_7 = "2200"
-            unit_type_1_8 = "Residential"
-            unit_num_1_8 = "1"
-            sq_ft_1_8 = "2200"
-            rent_roll_market_rents_1_8 = "2200"
-            rent_roll_actual_rents_1_8 = "2200"
-            rent_roll_monthly_rent_1_8 = "2200"
-            unit_type_1_9 = "Residential"
-            unit_num_1_9 = "1"
-            sq_ft_1_9 = "2200"
-            rent_roll_market_rents_1_9 = "2200"
-            rent_roll_actual_rents_1_9 = "2200"
-            rent_roll_monthly_rent_1_9 = "2200"
-            unit_type_1_10 = "Residential"
-            unit_num_1_10 = "1"
-            sq_ft_1_10 = "2200"
-            rent_roll_market_rents_1_10 = "2200"
-            rent_roll_actual_rents_1_10 = "2200"
-            rent_roll_monthly_rent_1_10 = "2200"
-            monthly_hoa_fees = "250"
-            actual_rents_in_place = "26400"
-            spcf_hoafees = "3000"
-            title_seller = "LeBron James"
-            title_name = "Steph Curry"
-            title_order_number = "12345"
-            pro_ins_first_name_1 = "Jalen"
-            pro_ins_last_name_1 = "Brunson"
-            pro_ins_name_1 = "Knicks"
-            pro_inc_email_1 = "Knicks@gmail.com"
-            pro_inc_ph_1 = "7329390925"
-
             # LB Contact
             page.fill('#LBContactName', value=lb_contact_name)
             print(f"[INFO] LB Contact Name '{lb_contact_name}' filled.")
@@ -876,4 +720,42 @@ if __name__ == "__main__":
     username = "clesnik@brrrr.com"
     password = "Lesnik$"
     branch_id = "c533ddbb5dd3a1f2"
-    main(branch_id, username, password)
+    pg_one_fico_range = "700-749"
+    # Example: All other required variables are also passed in here for testing
+    main(
+        branch_id, username, password, pg_one_fico_range,
+        # Secondary agent, loan program, etc.
+        "Chris Lesnik - Clesnik@brrrr.com", "DSCR - Rental - Long Term (LTR)", "BPL - DSCR - 1-8 - Purchase", "Have Property Under Contract", "83239",
+        "Broker", "Allen Wu", "Chris", "George", "Lesnik", "cglesnik@gmail.com", "7328040939",
+        "7329259148", "15 Burr Ave", "1", "Morganville", "New Jersey", "07751", "Monmouth", "United States",
+        "15 Burr Ave", "1", "Morganville", "New Jersey", "07751", "United States",
+        "01/18/2001", "123456789", "maritalStatus_1", "borrowerCitizenship_0", "720",
+        "Individual", "Test Entity LLC", "Test Trade Name", "LLC", "01/01/2020", "New Jersey", "12-3456789",
+        "7325551234", "123 Main St", "Morganville", "New Jersey", "07751",
+        "Member Zero", "Manager", "100", "123 Main St", "7325550000",
+        "111223333", "01/01/1980", "member0@example.com", "720", "guarantor_0", "citizenship_0",
+        "Member One", "Member", "50", "124 Main St", "7325550001",
+        "111223334", "02/02/1981", "member1@example.com", "710", "guarantor_1", "citizenship_1",
+        "Member Two", "Member", "25", "125 Main St", "7325550002",
+        "111223335", "03/03/1982", "member2@example.com", "705", "guarantor_2", "citizenship_2",
+        "Member Three", "Member", "25", "126 Main St", "7325550003",
+        "111223336", "04/04/1983", "member3@example.com", "700", "guarantor_3", "citizenship_3",
+        "Member Four", "Member", "10", "127 Main St", "7325550004",
+        "111223337", "05/05/1984", "member4@example.com", "695", "guarantor_4", "citizenship_4",
+        "Member Five", "Member", "5", "128 Main St", "7325550005",
+        "111223338", "06/06/1985", "member5@example.com", "690", "guarantor_5", "citizenship_5",
+        "Joe Smith", "Joesmith@gmail.com", "7329725984", "250", "26400", "3000",
+        "LeBron James", "Steph Curry", "12345", "Jalen", "Brunson", "Knicks",
+        "Knicks@gmail.com", "7329390925",
+        # Unit 1_1 ... 1_10
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200",
+        "Residential", "1", "2200", "2200", "2200", "2200"
+    )
