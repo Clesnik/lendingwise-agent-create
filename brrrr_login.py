@@ -1,5 +1,7 @@
 import sys
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+import json
+import tempfile
 
 def main(
     branch_id, username, password, pg_one_fico_range,
@@ -725,22 +727,17 @@ app = FastAPI()
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
     data = await request.json()
-    # Extract values from data, e.g.:
-    branch_id = data.get("branch_id", "")
-    username = data.get("username", "")
-    password = data.get("password", "")
-    # Add more as needed
-
-    # Pass as command-line arguments
+    with tempfile.NamedTemporaryFile(mode='w+', delete=False) as f:
+        json.dump(data, f)
+        temp_path = f.name
     result = subprocess.run(
-        ["python3", "brrrr_login.py", branch_id, username, password],
+        ["python3", "brrrr_login.py", temp_path],
         capture_output=True, text=True
     )
     return {"stdout": result.stdout, "stderr": result.stderr}
 
 if __name__ == "__main__":
-    import sys
-    branch_id = sys.argv[1]
-    username = sys.argv[2]
-    password = sys.argv[3]
-    main(branch_id, username, password)
+    import sys, json
+    with open(sys.argv[1]) as f:
+        data = json.load(f)
+    main(**data)
