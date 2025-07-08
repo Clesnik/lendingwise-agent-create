@@ -720,37 +720,72 @@ def main(
 
 # --- FastAPI server entry ---
 from fastapi import FastAPI, Request
-import subprocess
+import uvicorn
 
 app = FastAPI()
 
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
     data = await request.json()
-    args = ["python3", "brrrr_login.py"]
-    for key in [
-        "branch_id", "username", "password", "pg_one_fico_range",
-        "secondary_agent", "loan_program", "internal_program", "prop_process", "primary_status",
-        "lead_source", "referring_party", "pg_one_fname", "pg_one_mname", "pg_one_lname",
-        "pg_one_email", "pg_one_cell", "pg_one_work", "pg_one_street", "pg_one_unit", "pg_one_city",
-        "pg_one_state", "pg_one_zip", "pg_one_county", "pg_one_country",
-        "mailing_street", "mailing_unit", "mailing_city", "mailing_state", "mailing_zip", "mailing_country",
-        "pg_one_dob", "pg_one_ssn", "pg_one_marital_status", "pg_one_citizenship", "pg_one_mid_fico",
-        "borrower_type", "entity_name", "trade_name", "entity_type", "date_of_formation",
-        "state_of_formation", "ein_number", "business_phone", "entity_address", "entity_city",
-        "entity_state", "entity_zip"
-    ]:
-        args.append(str(data.get(key, "")))
 
-    result = subprocess.run(args, capture_output=True, text=True)
-    return {"stdout": result.stdout, "stderr": result.stderr}
+    # Turn JSON dict into ordered args for main()
+    args = [
+        data.get("branch_id", ""),
+        data.get("username", ""),
+        data.get("password", ""),
+        data.get("pg_one_fico_range", ""),
+        data.get("secondary_agent", ""),
+        data.get("loan_program", ""),
+        data.get("internal_program", ""),
+        data.get("prop_process", ""),
+        data.get("primary_status", ""),
+        data.get("lead_source", ""),
+        data.get("referring_party", ""),
+        data.get("pg_one_fname", ""),
+        data.get("pg_one_mname", ""),
+        data.get("pg_one_lname", ""),
+        data.get("pg_one_email", ""),
+        data.get("pg_one_cell", ""),
+        data.get("pg_one_work", ""),
+        data.get("pg_one_street", ""),
+        data.get("pg_one_unit", ""),
+        data.get("pg_one_city", ""),
+        data.get("pg_one_state", ""),
+        data.get("pg_one_zip", ""),
+        data.get("pg_one_county", ""),
+        data.get("pg_one_country", ""),
+        data.get("mailing_street", ""),
+        data.get("mailing_unit", ""),
+        data.get("mailing_city", ""),
+        data.get("mailing_state", ""),
+        data.get("mailing_zip", ""),
+        data.get("mailing_country", ""),
+        data.get("pg_one_dob", ""),
+        data.get("pg_one_ssn", ""),
+        data.get("pg_one_marital_status", ""),
+        data.get("pg_one_citizenship", ""),
+        data.get("pg_one_mid_fico", ""),
+        data.get("borrower_type", ""),
+        data.get("entity_name", ""),
+        data.get("trade_name", ""),
+        data.get("entity_type", ""),
+        data.get("date_of_formation", ""),
+        data.get("state_of_formation", ""),
+        data.get("ein_number", ""),
+        data.get("business_phone", ""),
+        data.get("entity_address", ""),
+        data.get("entity_city", ""),
+        data.get("entity_state", ""),
+        data.get("entity_zip", "")
+    ]
+
+    # Just call main() directly:
+    main(*args)
+    return {"status": "done"}
 
 if __name__ == "__main__":
     import sys
-    import json
-
     if len(sys.argv) > 1:
-        # Assume sys.argv[1] and onward are the argument values in order
         main(*sys.argv[1:])
     else:
-        print("No input arguments specified. Skipping direct run.")
+        print("Run with FastAPI. Use: uvicorn brrrr_login:app --host 0.0.0.0 --port 8000")
