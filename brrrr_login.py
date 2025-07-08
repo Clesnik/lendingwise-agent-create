@@ -79,18 +79,33 @@ def main(branch_id, username, password):
 
             # Select property process and primary status
             page.select_option('#propDetailsProcess', value=prop_process)
+            print(f"[INFO] Property process '{prop_process}' selected.")
+
             page.select_option('#primaryStatus', value=primary_status)
+            print(f"[INFO] Primary status '{primary_status}' selected.")
 
             # Fill referral source fields
             page.fill('#leadSource', value=lead_source)
+            print(f"[INFO] Lead source '{lead_source}' filled.")
+
             page.fill('#referringParty', value=referring_party)
+            print(f"[INFO] Referring party '{referring_party}' filled.")
 
             # Fill borrower fields
             page.fill('#borrowerFName', value=pg_one_fname)
+            print(f"[INFO] Borrower first name '{pg_one_fname}' filled.")
+
             page.fill('#borrowerMName', value=pg_one_mname)
+            print(f"[INFO] Borrower middle name '{pg_one_mname}' filled.")
+
             page.fill('#borrowerLName', value=pg_one_lname)
+            print(f"[INFO] Borrower last name '{pg_one_lname}' filled.")
+
             page.fill('#borrowerEmail', value=pg_one_email)
+            print(f"[INFO] Borrower email '{pg_one_email}' filled.")
+
             page.fill('#cellNo', value=pg_one_cell)
+            print(f"[INFO] Borrower cell '{pg_one_cell}' filled.")
 
         except PlaywrightTimeoutError as e:
             print(f"[ERROR] Timeout waiting for element: {e}")
