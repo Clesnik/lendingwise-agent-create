@@ -58,6 +58,27 @@ def main(branch_id, username, password):
             pg_one_lname = "Lesnik"
             pg_one_email = "cglesnik@gmail.com"
             pg_one_cell = "7328040939"
+            
+            # Additional borrower information variables
+            pg_one_work = "7329259148"
+            pg_one_street = "15 Burr Ave"
+            pg_one_unit = "1"
+            pg_one_city = "Morganville"
+            pg_one_state = "New Jersey"
+            pg_one_zip = "07751"
+            pg_one_county = "Monmouth"
+            pg_one_country = "United States"
+            mailing_street = "15 Burr Ave"
+            mailing_unit = "1"
+            mailing_city = "Morganville"
+            mailing_state = "New Jersey"
+            mailing_zip = "07751"
+            mailing_country = "United States"
+            pg_one_dob = "01/18/2001"
+            pg_one_ssn = "123456789"
+            pg_one_marital_status = "maritalStatus_1"
+            pg_one_citizenship = "borrowerCitizenship_0"
+            pg_one_mid_fico = "720"
 
             # Select secondary agent by passed-in label
             result = page.select_option('select#secondaryAgentId', label=secondary_agent)
@@ -106,6 +127,73 @@ def main(branch_id, username, password):
 
             page.fill('#cellNo', value=pg_one_cell)
             print(f"[INFO] Borrower cell '{pg_one_cell}' filled.")
+
+            # Fill work number
+            page.fill('#workNumber', value=pg_one_work)
+            print(f"[INFO] Work number '{pg_one_work}' filled.")
+
+            # Fill present address fields
+            page.fill('#presentAddress', value=pg_one_street)
+            print(f"[INFO] Present address '{pg_one_street}' filled.")
+
+            page.fill('#presentUnit', value=pg_one_unit)
+            print(f"[INFO] Present unit '{pg_one_unit}' filled.")
+
+            page.fill('#presentCity', value=pg_one_city)
+            print(f"[INFO] Present city '{pg_one_city}' filled.")
+
+            page.select_option('#presentState', value=pg_one_state)
+            print(f"[INFO] Present state '{pg_one_state}' selected.")
+
+            page.fill('#presentZip', value=pg_one_zip)
+            print(f"[INFO] Present zip '{pg_one_zip}' filled.")
+
+            page.select_option('#presentCounty', value=pg_one_county)
+            print(f"[INFO] Present county '{pg_one_county}' selected.")
+
+            page.select_option('#presentCountry', value=pg_one_country)
+            print(f"[INFO] Present country '{pg_one_country}' selected.")
+
+            # Fill mailing address fields
+            page.fill('#mailingAddress', value=mailing_street)
+            print(f"[INFO] Mailing address '{mailing_street}' filled.")
+
+            page.fill('#mailingUnit', value=mailing_unit)
+            print(f"[INFO] Mailing unit '{mailing_unit}' filled.")
+
+            page.fill('#mailingCity', value=mailing_city)
+            print(f"[INFO] Mailing city '{mailing_city}' filled.")
+
+            page.select_option('#mailingState', value=mailing_state)
+            print(f"[INFO] Mailing state '{mailing_state}' selected.")
+
+            page.fill('#mailingZip', value=mailing_zip)
+            print(f"[INFO] Mailing zip '{mailing_zip}' filled.")
+
+            page.select_option('#mailingCountry', value=mailing_country)
+            print(f"[INFO] Mailing country '{mailing_country}' selected.")
+
+            # Fill personal information
+            page.fill('#borrowerDOB', value=pg_one_dob)
+            print(f"[INFO] Date of birth '{pg_one_dob}' filled.")
+            page.click('body', position={'x': 10, 'y': 10})
+
+            page.fill('#ssn', value=pg_one_ssn)
+            print(f"[INFO] SSN '{pg_one_ssn}' filled.")
+
+            # Select marital status
+            page.wait_for_selector(f'label[for="{pg_one_marital_status}"]', timeout=10000)
+            page.click(f'label[for="{pg_one_marital_status}"]')
+            print(f"[INFO] Marital status '{pg_one_marital_status}' selected.")
+
+            # Select citizenship status
+            page.wait_for_selector(f'label[for="{pg_one_citizenship}"]', timeout=10000)
+            page.click(f'label[for="{pg_one_citizenship}"]')
+            print(f"[INFO] Citizenship status '{pg_one_citizenship}' selected.")
+
+            # Fill FICO score
+            page.fill('#midFicoScore', value=pg_one_mid_fico)
+            print(f"[INFO] Mid FICO score '{pg_one_mid_fico}' filled.")
 
         except PlaywrightTimeoutError as e:
             print(f"[ERROR] Timeout waiting for element: {e}")
