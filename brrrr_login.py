@@ -39,7 +39,7 @@ def main(branch_id, username, password):
             else:
                 print(f"[SUCCESS] Branch ID '{branch_id}' selected!")
                 page.wait_for_load_state('networkidle', timeout=10000)
-                page.wait_for_selector('select#secondaryAgentId', timeout=10000)
+                page.wait_for_selector('select#secondaryAgentId', timeout=20000)
                 secondary_options = page.query_selector_all('select#secondaryAgentId option')
                 print("[DEBUG] Available secondary agents:")
                 for option in secondary_options:
@@ -60,7 +60,8 @@ def main(branch_id, username, password):
             pg_one_cell = "7328040939"
 
             # Select secondary agent by passed-in label
-            page.select_option('select#secondaryAgentId', label=secondary_agent)
+            result = page.select_option('select#secondaryAgentId', label=secondary_agent)
+            print(f"[DEBUG] Selected secondary agent result: {result}")
 
             # Open and select loan program
             page.wait_for_selector('div#LMRClientType_chosen', timeout=10000)
