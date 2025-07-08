@@ -718,15 +718,29 @@ def main(
 
 # --- FastAPI server entry ---
 from fastapi import FastAPI, Request
-import uvicorn
+import subprocess
 
 app = FastAPI()
 
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
-    body = await request.json()
-    main(**body)
-    return {"status": "ok"}
+    data = await request.json()
+    # Extract values from data, e.g.:
+    branch_id = data.get("branch_id", "")
+    username = data.get("username", "")
+    password = data.get("password", "")
+    # Add more as needed
+
+    # Pass as command-line arguments
+    result = subprocess.run(
+        ["python3", "brrrr_login.py", branch_id, username, password],
+        capture_output=True, text=True
+    )
+    return {"stdout": result.stdout, "stderr": result.stderr}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import sys
+    branch_id = sys.argv[1]
+    username = sys.argv[2]
+    password = sys.argv[3]
+    main(branch_id, username, password)
