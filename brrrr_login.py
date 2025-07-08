@@ -38,6 +38,48 @@ def main(branch_id, username, password):
                 print(f"[ERROR] Branch ID '{branch_id}' not found in dropdown!")
             else:
                 print(f"[SUCCESS] Branch ID '{branch_id}' selected!")
+
+            # --- Additional actions after branch selection ---
+            secondary_agent = "05366437ad3b1c78"
+            loan_program = "DSCR - Rental - Long Term (LTR)"
+            internal_program = "BPL - DSCR - 1-8 - Purchase"
+            prop_process = "Have Property Under Contract"
+            primary_status = "83239"
+            lead_source = "Broker"
+            referring_party = "Allen Wu"
+            pg_one_fname = "Chris"
+            pg_one_mname = "George"
+            pg_one_lname = "Lesnik"
+            pg_one_email = "cglesnik@gmail.com"
+            pg_one_cell = "7328040939"
+
+            # Select secondary agent by passed-in label
+            page.select_option('select#secondaryAgentId', label=secondary_agent)
+
+            # Open and select loan program
+            page.click('div#LMRClientType_chosen')
+            page.click(f'ul.chosen-results li.active-result:has-text("{loan_program}")')
+
+            # Open the "Select Internal Loan Program" Chosen multi-select
+            page.click('div#LMRInternalLoanProgram_chosen')
+            # Select internal program
+            page.click(f'ul.chosen-results li.active-result:has-text("{internal_program}")')
+
+            # Select property process and primary status
+            page.select_option('#propDetailsProcess', value=prop_process)
+            page.select_option('#primaryStatus', value=primary_status)
+
+            # Fill referral source fields
+            page.fill('#leadSource', value=lead_source)
+            page.fill('#referringParty', value=referring_party)
+
+            # Fill borrower fields
+            page.fill('#borrowerFName', value=pg_one_fname)
+            page.fill('#borrowerMName', value=pg_one_mname)
+            page.fill('#borrowerLName', value=pg_one_lname)
+            page.fill('#borrowerEmail', value=pg_one_email)
+            page.fill('#cellNo', value=pg_one_cell)
+
         except PlaywrightTimeoutError as e:
             print(f"[ERROR] Timeout waiting for element: {e}")
         except Exception as e:
@@ -48,5 +90,5 @@ if __name__ == "__main__":
     # For testing, use hardcoded credentials and branch_id
     username = "clesnik@brrrr.com"
     password = "Lesnik$"
-    branch_id = "BrrrrLoans"
+    branch_id = "c533ddbb5dd3a1f2"
     main(branch_id, username, password)
