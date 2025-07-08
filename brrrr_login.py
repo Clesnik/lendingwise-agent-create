@@ -64,15 +64,18 @@ def main(branch_id, username, password):
             print(f"[DEBUG] Selected secondary agent result: {result}")
 
             # Open and select loan program
+            print(f"[INFO] Selecting loan program: {loan_program}")
             page.wait_for_selector('div#LMRClientType_chosen', timeout=10000)
             page.click('div#LMRClientType_chosen')
             page.click(f'ul.chosen-results li.active-result:has-text("{loan_program}")')
+            print("[INFO] Loan program selected.")
 
             # Open the "Select Internal Loan Program" Chosen multi-select
+            print(f"[INFO] Selecting internal program: {internal_program}")
             page.wait_for_selector('div#LMRInternalLoanProgram_chosen', timeout=10000)
             page.click('div#LMRInternalLoanProgram_chosen')
-            # Select internal program
             page.click(f'ul.chosen-results li.active-result:has-text("{internal_program}")')
+            print("[INFO] Internal program selected.")
 
             # Select property process and primary status
             page.select_option('#propDetailsProcess', value=prop_process)
