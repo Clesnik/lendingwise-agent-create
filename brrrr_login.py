@@ -276,9 +276,15 @@ def main(branch_id, username, password):
             page.fill('#midFicoScore', value=pg_one_mid_fico)
             print(f"[INFO] Mid FICO score '{pg_one_mid_fico}' filled.")
 
-            # Select FICO range
-            page.select_option('#borCreditScoreRange', value=pg_one_fico_range)
-            print(f"[INFO] FICO range '{pg_one_fico_range}' selected.")
+            # Wait and print available FICO ranges before selecting
+            print(f"[INFO] Selecting FICO range '{pg_one_fico_range}'")
+            page.wait_for_selector('#borCreditScoreRange', timeout=10000)
+            fico_options = page.query_selector_all('#borCreditScoreRange option')
+            print("[DEBUG] Available FICO ranges:")
+            for option in fico_options:
+                print(option.inner_text())
+            result = page.select_option('#borCreditScoreRange', value=pg_one_fico_range)
+            print(f"[DEBUG] Selected FICO range result: {result}")
 
             # Select borrower type
             page.select_option('#borrowerType', value=borrower_type)
