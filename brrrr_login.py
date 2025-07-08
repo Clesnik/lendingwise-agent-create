@@ -38,6 +38,7 @@ def main(
     unit_type_1_9, unit_num_1_9, sq_ft_1_9, rent_roll_market_rents_1_9, rent_roll_actual_rents_1_9, rent_roll_monthly_rent_1_9,
     unit_type_1_10, unit_num_1_10, sq_ft_1_10, rent_roll_market_rents_1_10, rent_roll_actual_rents_1_10, rent_roll_monthly_rent_1_10
 ):
+    print("MAIN FUNCTION CALLED")
     url = "https://app.brrrr.com/backoffice/LMRequest.php?eOpt=0&cliType=PC&tabOpt=QAPP&moduleCode=HMLO&supp=help"
     print(f"[INFO] Launching browser and navigating to {url}")
     with sync_playwright() as p:
@@ -726,6 +727,7 @@ app = FastAPI()
 
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
+    print("ENDPOINT HIT")
     data = await request.json()
 
     # Turn JSON dict into ordered args for main()
