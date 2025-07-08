@@ -283,7 +283,7 @@ def main(branch_id, username, password):
             print("[DEBUG] Available FICO ranges:")
             for option in fico_options:
                 print(option.inner_text())
-            result = page.select_option('#borCreditScoreRange', value=pg_one_fico_range)
+            result = page.select_option('#borCreditScoreRange', label=pg_one_fico_range)
             print(f"[DEBUG] Selected FICO range result: {result}")
 
             # Select borrower type
