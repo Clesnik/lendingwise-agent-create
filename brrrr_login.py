@@ -727,7 +727,7 @@ app = FastAPI()
 
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
-    print("ENDPOINT HIT")
+    print("ENDPOINT HIT", flush=True)
     data = await request.json()
 
     # Turn JSON dict into ordered args for main()
@@ -782,7 +782,12 @@ async def run_playwright(request: Request):
     ]
 
     # Just call main() directly:
-    main(*args)
+    try:
+        print("ARGS:", args, flush=True)
+        main(*args)
+    except Exception as e:
+        print("ERROR IN MAIN:", e, flush=True)
+        raise
     return {"status": "done"}
 
 if __name__ == "__main__":
