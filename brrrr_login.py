@@ -38,6 +38,7 @@ def main(branch_id, username, password):
                 print(f"[ERROR] Branch ID '{branch_id}' not found in dropdown!")
             else:
                 print(f"[SUCCESS] Branch ID '{branch_id}' selected!")
+                page.wait_for_selector('select#secondaryAgentId', timeout=10000)
 
             # --- Additional actions after branch selection ---
             secondary_agent = "05366437ad3b1c78"
@@ -57,10 +58,12 @@ def main(branch_id, username, password):
             page.select_option('select#secondaryAgentId', label=secondary_agent)
 
             # Open and select loan program
+            page.wait_for_selector('div#LMRClientType_chosen', timeout=10000)
             page.click('div#LMRClientType_chosen')
             page.click(f'ul.chosen-results li.active-result:has-text("{loan_program}")')
 
             # Open the "Select Internal Loan Program" Chosen multi-select
+            page.wait_for_selector('div#LMRInternalLoanProgram_chosen', timeout=10000)
             page.click('div#LMRInternalLoanProgram_chosen')
             # Select internal program
             page.click(f'ul.chosen-results li.active-result:has-text("{internal_program}")')
