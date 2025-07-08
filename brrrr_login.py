@@ -749,9 +749,8 @@ if __name__ == "__main__":
     import sys
     import json
 
-    if len(sys.argv) > 1 and sys.argv[1].endswith(".json"):
-        with open(sys.argv[1]) as f:
-            data = json.load(f)
-            main(**data)
+    if len(sys.argv) > 1:
+        # Assume sys.argv[1] and onward are the argument values in order
+        main(*sys.argv[1:])
     else:
-        print("No input JSON file specified. Skipping direct run.")
+        print("No input arguments specified. Skipping direct run.")
