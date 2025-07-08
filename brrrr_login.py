@@ -727,15 +727,24 @@ app = FastAPI()
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
     data = await request.json()
-    with tempfile.NamedTemporaryFile(mode='w+', delete=False) as f:
-        json.dump(data, f)
-        temp_path = f.name
-    result = subprocess.run(
-        ["python3", "brrrr_login.py", temp_path],
-        capture_output=True, text=True
-    )
+    args = ["python3", "brrrr_login.py"]
+    for key in [
+        "branch_id", "username", "password", "pg_one_fico_range",
+        "secondary_agent", "loan_program", "internal_program", "prop_process", "primary_status",
+        "lead_source", "referring_party", "pg_one_fname", "pg_one_mname", "pg_one_lname",
+        "pg_one_email", "pg_one_cell", "pg_one_work", "pg_one_street", "pg_one_unit", "pg_one_city",
+        "pg_one_state", "pg_one_zip", "pg_one_county", "pg_one_country",
+        "mailing_street", "mailing_unit", "mailing_city", "mailing_state", "mailing_zip", "mailing_country",
+        "pg_one_dob", "pg_one_ssn", "pg_one_marital_status", "pg_one_citizenship", "pg_one_mid_fico",
+        "borrower_type", "entity_name", "trade_name", "entity_type", "date_of_formation",
+        "state_of_formation", "ein_number", "business_phone", "entity_address", "entity_city",
+        "entity_state", "entity_zip"
+    ]:
+        args.append(str(data.get(key, "")))
+
+    result = subprocess.run(args, capture_output=True, text=True)
     return {"stdout": result.stdout, "stderr": result.stderr}
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import sys
+    main(*sys.argv[1:])
