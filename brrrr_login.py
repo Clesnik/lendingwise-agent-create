@@ -715,47 +715,18 @@ def main(
             print(f"[ERROR] {e}")
         browser.close()
 
+
+# --- FastAPI server entry ---
+from fastapi import FastAPI, Request
+import uvicorn
+
+app = FastAPI()
+
+@app.post("/run-playwright")
+async def run_playwright(request: Request):
+    body = await request.json()
+    main(**body)
+    return {"status": "ok"}
+
 if __name__ == "__main__":
-    # For testing, use hardcoded credentials and branch_id
-    username = "clesnik@brrrr.com"
-    password = "Lesnik$"
-    branch_id = "c533ddbb5dd3a1f2"
-    pg_one_fico_range = "700-749"
-    # Example: All other required variables are also passed in here for testing
-    main(
-        branch_id, username, password, pg_one_fico_range,
-        # Secondary agent, loan program, etc.
-        "Chris Lesnik - Clesnik@brrrr.com", "DSCR - Rental - Long Term (LTR)", "BPL - DSCR - 1-8 - Purchase", "Have Property Under Contract", "83239",
-        "Broker", "Allen Wu", "Chris", "George", "Lesnik", "cglesnik@gmail.com", "7328040939",
-        "7329259148", "15 Burr Ave", "1", "Morganville", "New Jersey", "07751", "Monmouth", "United States",
-        "15 Burr Ave", "1", "Morganville", "New Jersey", "07751", "United States",
-        "01/18/2001", "123456789", "maritalStatus_1", "borrowerCitizenship_0", "720",
-        "Individual", "Test Entity LLC", "Test Trade Name", "LLC", "01/01/2020", "New Jersey", "12-3456789",
-        "7325551234", "123 Main St", "Morganville", "New Jersey", "07751",
-        "Member Zero", "Manager", "100", "123 Main St", "7325550000",
-        "111223333", "01/01/1980", "member0@example.com", "720", "guarantor_0", "citizenship_0",
-        "Member One", "Member", "50", "124 Main St", "7325550001",
-        "111223334", "02/02/1981", "member1@example.com", "710", "guarantor_1", "citizenship_1",
-        "Member Two", "Member", "25", "125 Main St", "7325550002",
-        "111223335", "03/03/1982", "member2@example.com", "705", "guarantor_2", "citizenship_2",
-        "Member Three", "Member", "25", "126 Main St", "7325550003",
-        "111223336", "04/04/1983", "member3@example.com", "700", "guarantor_3", "citizenship_3",
-        "Member Four", "Member", "10", "127 Main St", "7325550004",
-        "111223337", "05/05/1984", "member4@example.com", "695", "guarantor_4", "citizenship_4",
-        "Member Five", "Member", "5", "128 Main St", "7325550005",
-        "111223338", "06/06/1985", "member5@example.com", "690", "guarantor_5", "citizenship_5",
-        "Joe Smith", "Joesmith@gmail.com", "7329725984", "250", "26400", "3000",
-        "LeBron James", "Steph Curry", "12345", "Jalen", "Brunson", "Knicks",
-        "Knicks@gmail.com", "7329390925",
-        # Unit 1_1 ... 1_10
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200",
-        "Residential", "1", "2200", "2200", "2200", "2200"
-    )
+    uvicorn.run(app, host="0.0.0.0", port=8000)
