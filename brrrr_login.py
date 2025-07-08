@@ -38,7 +38,12 @@ def main(branch_id, username, password):
                 print(f"[ERROR] Branch ID '{branch_id}' not found in dropdown!")
             else:
                 print(f"[SUCCESS] Branch ID '{branch_id}' selected!")
+                page.wait_for_load_state('networkidle', timeout=10000)
                 page.wait_for_selector('select#secondaryAgentId', timeout=10000)
+                secondary_options = page.query_selector_all('select#secondaryAgentId option')
+                print("[DEBUG] Available secondary agents:")
+                for option in secondary_options:
+                    print(option.inner_text())
 
             # --- Additional actions after branch selection ---
             secondary_agent = "05366437ad3b1c78"
