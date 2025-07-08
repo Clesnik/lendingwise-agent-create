@@ -46,7 +46,7 @@ def main(branch_id, username, password):
                     print(option.inner_text())
 
             # --- Additional actions after branch selection ---
-            secondary_agent = "05366437ad3b1c78"
+            secondary_agent = "Chris Lesnik - Clesnik@brrrr.com"
             loan_program = "DSCR - Rental - Long Term (LTR)"
             internal_program = "BPL - DSCR - 1-8 - Purchase"
             prop_process = "Have Property Under Contract"
