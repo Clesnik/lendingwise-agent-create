@@ -738,6 +738,7 @@ async def run_playwright(request: Request):
 
 if __name__ == "__main__":
     import sys, json
+    print("sys.argv:", sys.argv)
     with open(sys.argv[1]) as f:
         data = json.load(f)
     main(**data)
