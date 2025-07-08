@@ -516,7 +516,348 @@ def main(branch_id, username, password):
                 page.click(f'label[for="{member_citizenship_five}"]')
                 print(f"[INFO] Member 5 citizenship '{member_citizenship_five}' selected.")
 
-            # Additional actions for guarantors and other fields would follow the same pattern...
+            # Placeholders for new values
+            lb_contact_name = "Joe Smith"
+            lb_contact_email = "Joesmith@gmail.com"
+            lb_contact_phone = "7329725984"
+            unit_type_1_1 = "Residential"
+            unit_num_1_1 = "1"
+            sq_ft_1_1 = "2200"
+            rent_roll_market_rents_1_1 = "2200"
+            rent_roll_actual_rents_1_1 = "2200"
+            rent_roll_monthly_rent_1_1 = "2200"
+            unit_type_1_2 = "Residential"
+            unit_num_1_2 = "1"
+            sq_ft_1_2 = "2200"
+            rent_roll_market_rents_1_2 = "2200"
+            rent_roll_actual_rents_1_2 = "2200"
+            rent_roll_monthly_rent_1_2 = "2200"
+            unit_type_1_3 = "Residential"
+            unit_num_1_3 = "1"
+            sq_ft_1_3 = "2200"
+            rent_roll_market_rents_1_3 = "2200"
+            rent_roll_actual_rents_1_3 = "2200"
+            rent_roll_monthly_rent_1_3 = "2200"
+            unit_type_1_4 = "Residential"
+            unit_num_1_4 = "1"
+            sq_ft_1_4 = "2200"
+            rent_roll_market_rents_1_4 = "2200"
+            rent_roll_actual_rents_1_4 = "2200"
+            rent_roll_monthly_rent_1_4 = "2200"
+            unit_type_1_5 = "Residential"
+            unit_num_1_5 = "1"
+            sq_ft_1_5 = "2200"
+            rent_roll_market_rents_1_5 = "2200"
+            rent_roll_actual_rents_1_5 = "2200"
+            rent_roll_monthly_rent_1_5 = "2200"
+            unit_type_1_6 = "Residential"
+            unit_num_1_6 = "1"
+            sq_ft_1_6 = "2200"
+            rent_roll_market_rents_1_6 = "2200"
+            rent_roll_actual_rents_1_6 = "2200"
+            rent_roll_monthly_rent_1_6 = "2200"
+            unit_type_1_7 = "Residential"
+            unit_num_1_7 = "1"
+            sq_ft_1_7 = "2200"
+            rent_roll_market_rents_1_7 = "2200"
+            rent_roll_actual_rents_1_7 = "2200"
+            rent_roll_monthly_rent_1_7 = "2200"
+            unit_type_1_8 = "Residential"
+            unit_num_1_8 = "1"
+            sq_ft_1_8 = "2200"
+            rent_roll_market_rents_1_8 = "2200"
+            rent_roll_actual_rents_1_8 = "2200"
+            rent_roll_monthly_rent_1_8 = "2200"
+            unit_type_1_9 = "Residential"
+            unit_num_1_9 = "1"
+            sq_ft_1_9 = "2200"
+            rent_roll_market_rents_1_9 = "2200"
+            rent_roll_actual_rents_1_9 = "2200"
+            rent_roll_monthly_rent_1_9 = "2200"
+            unit_type_1_10 = "Residential"
+            unit_num_1_10 = "1"
+            sq_ft_1_10 = "2200"
+            rent_roll_market_rents_1_10 = "2200"
+            rent_roll_actual_rents_1_10 = "2200"
+            rent_roll_monthly_rent_1_10 = "2200"
+            monthly_hoa_fees = "250"
+            actual_rents_in_place = "26400"
+            spcf_hoafees = "3000"
+            title_seller = "LeBron James"
+            title_name = "Steph Curry"
+            title_order_number = "12345"
+            pro_ins_first_name_1 = "Jalen"
+            pro_ins_last_name_1 = "Brunson"
+            pro_ins_name_1 = "Knicks"
+            pro_inc_email_1 = "Knicks@gmail.com"
+            pro_inc_ph_1 = "7329390925"
+
+            # LB Contact
+            page.fill('#LBContactName', value=lb_contact_name)
+            print(f"[INFO] LB Contact Name '{lb_contact_name}' filled.")
+            page.fill('#LBContactEmail', value=lb_contact_email)
+            print(f"[INFO] LB Contact Email '{lb_contact_email}' filled.")
+            page.fill('#LBContactPhone', value=lb_contact_phone)
+            print(f"[INFO] LB Contact Phone '{lb_contact_phone}' filled.")
+
+            # Unit 1_1
+            page.click('div#unitType_1_1_chosen')
+            print(f"[INFO] Unit 1_1 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_1}")')
+            print(f"[INFO] Unit 1_1 type '{unit_type_1_1}' selected.")
+            page.fill('#unitNum_1_1', value=unit_num_1_1)
+            print(f"[INFO] Unit 1_1 number '{unit_num_1_1}' filled.")
+            page.fill('#sqFt_1_1', value=sq_ft_1_1)
+            print(f"[INFO] Unit 1_1 sqft '{sq_ft_1_1}' filled.")
+            page.fill('#rentRollMarketRents_1_1', value=rent_roll_market_rents_1_1)
+            print(f"[INFO] Unit 1_1 market rents '{rent_roll_market_rents_1_1}' filled.")
+            page.fill('#rentRollActualRents_1_1', value=rent_roll_actual_rents_1_1)
+            print(f"[INFO] Unit 1_1 actual rents '{rent_roll_actual_rents_1_1}' filled.")
+            page.fill('#rentRollMonthlyRent_1_1', value=rent_roll_monthly_rent_1_1)
+            print(f"[INFO] Unit 1_1 monthly rent '{rent_roll_monthly_rent_1_1}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_1"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_1"]')
+            print(f"[INFO] Unit 1_1 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_2 button clicked.")
+            page.wait_for_timeout(5000)
+
+            # Unit 1_2
+            page.click('div#unitType_1_2_chosen')
+            print(f"[INFO] Unit 1_2 type dropdown opened.")
+            dropdown_option = page.locator('div#unitType_1_2_chosen + div ul.chosen-results li.active-result', has_text=unit_type_1_2)
+            dropdown_option.wait_for(timeout=5000)
+            dropdown_option.click()
+            print(f"[INFO] Unit 1_2 type '{unit_type_1_2}' selected.")
+            page.fill('#unitNum_1_2', value=unit_num_1_2)
+            print(f"[INFO] Unit 1_2 number '{unit_num_1_2}' filled.")
+            page.fill('#sqFt_1_2', value=sq_ft_1_2)
+            print(f"[INFO] Unit 1_2 sqft '{sq_ft_1_2}' filled.")
+            page.fill('#rentRollMarketRents_1_2', value=rent_roll_market_rents_1_2)
+            print(f"[INFO] Unit 1_2 market rents '{rent_roll_market_rents_1_2}' filled.")
+            page.fill('#rentRollActualRents_1_2', value=rent_roll_actual_rents_1_2)
+            print(f"[INFO] Unit 1_2 actual rents '{rent_roll_actual_rents_1_2}' filled.")
+            page.fill('#rentRollMonthlyRent_1_2', value=rent_roll_monthly_rent_1_2)
+            print(f"[INFO] Unit 1_2 monthly rent '{rent_roll_monthly_rent_1_2}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_2"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_2"]')
+            print(f"[INFO] Unit 1_2 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_3 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_3
+            page.click('div#unitType_1_3_chosen')
+            print(f"[INFO] Unit 1_3 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_3}")')
+            print(f"[INFO] Unit 1_3 type '{unit_type_1_3}' selected.")
+            page.fill('#unitNum_1_3', value=unit_num_1_3)
+            print(f"[INFO] Unit 1_3 number '{unit_num_1_3}' filled.")
+            page.fill('#sqFt_1_3', value=sq_ft_1_3)
+            print(f"[INFO] Unit 1_3 sqft '{sq_ft_1_3}' filled.")
+            page.fill('#rentRollMarketRents_1_3', value=rent_roll_market_rents_1_3)
+            print(f"[INFO] Unit 1_3 market rents '{rent_roll_market_rents_1_3}' filled.")
+            page.fill('#rentRollActualRents_1_3', value=rent_roll_actual_rents_1_3)
+            print(f"[INFO] Unit 1_3 actual rents '{rent_roll_actual_rents_1_3}' filled.")
+            page.fill('#rentRollMonthlyRent_1_3', value=rent_roll_monthly_rent_1_3)
+            print(f"[INFO] Unit 1_3 monthly rent '{rent_roll_monthly_rent_1_3}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_3"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_3"]')
+            print(f"[INFO] Unit 1_3 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_4 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_4
+            page.click('div#unitType_1_4_chosen')
+            print(f"[INFO] Unit 1_4 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_4}")')
+            print(f"[INFO] Unit 1_4 type '{unit_type_1_4}' selected.")
+            page.fill('#unitNum_1_4', value=unit_num_1_4)
+            print(f"[INFO] Unit 1_4 number '{unit_num_1_4}' filled.")
+            page.fill('#sqFt_1_4', value=sq_ft_1_4)
+            print(f"[INFO] Unit 1_4 sqft '{sq_ft_1_4}' filled.")
+            page.fill('#rentRollMarketRents_1_4', value=rent_roll_market_rents_1_4)
+            print(f"[INFO] Unit 1_4 market rents '{rent_roll_market_rents_1_4}' filled.")
+            page.fill('#rentRollActualRents_1_4', value=rent_roll_actual_rents_1_4)
+            print(f"[INFO] Unit 1_4 actual rents '{rent_roll_actual_rents_1_4}' filled.")
+            page.fill('#rentRollMonthlyRent_1_4', value=rent_roll_monthly_rent_1_4)
+            print(f"[INFO] Unit 1_4 monthly rent '{rent_roll_monthly_rent_1_4}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_4"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_4"]')
+            print(f"[INFO] Unit 1_4 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_5 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_5
+            page.click('div#unitType_1_5_chosen')
+            print(f"[INFO] Unit 1_5 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_5}")')
+            print(f"[INFO] Unit 1_5 type '{unit_type_1_5}' selected.")
+            page.fill('#unitNum_1_5', value=unit_num_1_5)
+            print(f"[INFO] Unit 1_5 number '{unit_num_1_5}' filled.")
+            page.fill('#sqFt_1_5', value=sq_ft_1_5)
+            print(f"[INFO] Unit 1_5 sqft '{sq_ft_1_5}' filled.")
+            page.fill('#rentRollMarketRents_1_5', value=rent_roll_market_rents_1_5)
+            print(f"[INFO] Unit 1_5 market rents '{rent_roll_market_rents_1_5}' filled.")
+            page.fill('#rentRollActualRents_1_5', value=rent_roll_actual_rents_1_5)
+            print(f"[INFO] Unit 1_5 actual rents '{rent_roll_actual_rents_1_5}' filled.")
+            page.fill('#rentRollMonthlyRent_1_5', value=rent_roll_monthly_rent_1_5)
+            print(f"[INFO] Unit 1_5 monthly rent '{rent_roll_monthly_rent_1_5}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_5"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_5"]')
+            print(f"[INFO] Unit 1_5 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_6 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_6
+            page.click('div#unitType_1_6_chosen')
+            print(f"[INFO] Unit 1_6 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_6}")')
+            print(f"[INFO] Unit 1_6 type '{unit_type_1_6}' selected.")
+            page.fill('#unitNum_1_6', value=unit_num_1_6)
+            print(f"[INFO] Unit 1_6 number '{unit_num_1_6}' filled.")
+            page.fill('#sqFt_1_6', value=sq_ft_1_6)
+            print(f"[INFO] Unit 1_6 sqft '{sq_ft_1_6}' filled.")
+            page.fill('#rentRollMarketRents_1_6', value=rent_roll_market_rents_1_6)
+            print(f"[INFO] Unit 1_6 market rents '{rent_roll_market_rents_1_6}' filled.")
+            page.fill('#rentRollActualRents_1_6', value=rent_roll_actual_rents_1_6)
+            print(f"[INFO] Unit 1_6 actual rents '{rent_roll_actual_rents_1_6}' filled.")
+            page.fill('#rentRollMonthlyRent_1_6', value=rent_roll_monthly_rent_1_6)
+            print(f"[INFO] Unit 1_6 monthly rent '{rent_roll_monthly_rent_1_6}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_6"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_6"]')
+            print(f"[INFO] Unit 1_6 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_7 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_7
+            page.click('div#unitType_1_7_chosen')
+            print(f"[INFO] Unit 1_7 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_7}")')
+            print(f"[INFO] Unit 1_7 type '{unit_type_1_7}' selected.")
+            page.fill('#unitNum_1_7', value=unit_num_1_7)
+            print(f"[INFO] Unit 1_7 number '{unit_num_1_7}' filled.")
+            page.fill('#sqFt_1_7', value=sq_ft_1_7)
+            print(f"[INFO] Unit 1_7 sqft '{sq_ft_1_7}' filled.")
+            page.fill('#rentRollMarketRents_1_7', value=rent_roll_market_rents_1_7)
+            print(f"[INFO] Unit 1_7 market rents '{rent_roll_market_rents_1_7}' filled.")
+            page.fill('#rentRollActualRents_1_7', value=rent_roll_actual_rents_1_7)
+            print(f"[INFO] Unit 1_7 actual rents '{rent_roll_actual_rents_1_7}' filled.")
+            page.fill('#rentRollMonthlyRent_1_7', value=rent_roll_monthly_rent_1_7)
+            print(f"[INFO] Unit 1_7 monthly rent '{rent_roll_monthly_rent_1_7}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_7"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_7"]')
+            print(f"[INFO] Unit 1_7 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_8 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_8
+            page.click('div#unitType_1_8_chosen')
+            print(f"[INFO] Unit 1_8 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_8}")')
+            print(f"[INFO] Unit 1_8 type '{unit_type_1_8}' selected.")
+            page.fill('#unitNum_1_8', value=unit_num_1_8)
+            print(f"[INFO] Unit 1_8 number '{unit_num_1_8}' filled.")
+            page.fill('#sqFt_1_8', value=sq_ft_1_8)
+            print(f"[INFO] Unit 1_8 sqft '{sq_ft_1_8}' filled.")
+            page.fill('#rentRollMarketRents_1_8', value=rent_roll_market_rents_1_8)
+            print(f"[INFO] Unit 1_8 market rents '{rent_roll_market_rents_1_8}' filled.")
+            page.fill('#rentRollActualRents_1_8', value=rent_roll_actual_rents_1_8)
+            print(f"[INFO] Unit 1_8 actual rents '{rent_roll_actual_rents_1_8}' filled.")
+            page.fill('#rentRollMonthlyRent_1_8', value=rent_roll_monthly_rent_1_8)
+            print(f"[INFO] Unit 1_8 monthly rent '{rent_roll_monthly_rent_1_8}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_8"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_8"]')
+            print(f"[INFO] Unit 1_8 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_9 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_9
+            page.click('div#unitType_1_9_chosen')
+            print(f"[INFO] Unit 1_9 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_9}")')
+            print(f"[INFO] Unit 1_9 type '{unit_type_1_9}' selected.")
+            page.fill('#unitNum_1_9', value=unit_num_1_9)
+            print(f"[INFO] Unit 1_9 number '{unit_num_1_9}' filled.")
+            page.fill('#sqFt_1_9', value=sq_ft_1_9)
+            print(f"[INFO] Unit 1_9 sqft '{sq_ft_1_9}' filled.")
+            page.fill('#rentRollMarketRents_1_9', value=rent_roll_market_rents_1_9)
+            print(f"[INFO] Unit 1_9 market rents '{rent_roll_market_rents_1_9}' filled.")
+            page.fill('#rentRollActualRents_1_9', value=rent_roll_actual_rents_1_9)
+            print(f"[INFO] Unit 1_9 actual rents '{rent_roll_actual_rents_1_9}' filled.")
+            page.fill('#rentRollMonthlyRent_1_9', value=rent_roll_monthly_rent_1_9)
+            print(f"[INFO] Unit 1_9 monthly rent '{rent_roll_monthly_rent_1_9}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_9"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_9"]')
+            print(f"[INFO] Unit 1_9 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_10 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # Unit 1_10
+            page.click('div#unitType_1_10_chosen')
+            print(f"[INFO] Unit 1_10 type dropdown opened.")
+            page.click(f'ul.chosen-results li:has-text("{unit_type_1_10}")')
+            print(f"[INFO] Unit 1_10 type '{unit_type_1_10}' selected.")
+            page.fill('#unitNum_1_10', value=unit_num_1_10)
+            print(f"[INFO] Unit 1_10 number '{unit_num_1_10}' filled.")
+            page.fill('#sqFt_1_10', value=sq_ft_1_10)
+            print(f"[INFO] Unit 1_10 sqft '{sq_ft_1_10}' filled.")
+            page.fill('#rentRollMarketRents_1_10', value=rent_roll_market_rents_1_10)
+            print(f"[INFO] Unit 1_10 market rents '{rent_roll_market_rents_1_10}' filled.")
+            page.fill('#rentRollActualRents_1_10', value=rent_roll_actual_rents_1_10)
+            print(f"[INFO] Unit 1_10 actual rents '{rent_roll_actual_rents_1_10}' filled.")
+            page.fill('#rentRollMonthlyRent_1_10', value=rent_roll_monthly_rent_1_10)
+            print(f"[INFO] Unit 1_10 monthly rent '{rent_roll_monthly_rent_1_10}' filled.")
+            page.wait_for_selector('label[for="rentRollVacantNo_1_10"]', timeout=10000)
+            page.click('label[for="rentRollVacantNo_1_10"]')
+            print(f"[INFO] Unit 1_10 vacant 'No' selected.")
+            page.click('//span[contains(@class, "autosavePropertyRentRoll") and contains(@onclick, "cloneFormSection")]')
+            print(f"[INFO] Add unit 1_11 button clicked.")
+            page.wait_for_timeout(1000)
+
+            # HOA and Title/Insurance
+            page.wait_for_selector('label[for="isHOAAvailableYes_1_isHOAAvailable"]', timeout=10000)
+            page.click('label[for="isHOAAvailableYes_1_isHOAAvailable"]')
+            print(f"[INFO] HOA available 'Yes' selected.")
+            page.fill('#monthlyHOAFees', value=monthly_hoa_fees)
+            print(f"[INFO] Monthly HOA fees '{monthly_hoa_fees}' filled.")
+            page.wait_for_selector('input#actualRentsInPlace', timeout=10000)
+            page.click('input#actualRentsInPlace')
+            page.fill('input#actualRentsInPlace', actual_rents_in_place)
+            print(f"[INFO] Actual rents in place '{actual_rents_in_place}' filled.")
+            page.wait_for_selector('input#spcf_hoafees', timeout=10000)
+            page.click('input#spcf_hoafees')
+            page.fill('input#spcf_hoafees', spcf_hoafees)
+            print(f"[INFO] SPCF HOA fees '{spcf_hoafees}' filled.")
+            page.wait_for_selector('label[for="isBorIntendToOccupyPropAsPRINo"]', timeout=10000)
+            page.click('label[for="isBorIntendToOccupyPropAsPRINo"]')
+            print(f"[INFO] Borrower intend to occupy property as primary: No selected.")
+            page.wait_for_selector('label[for="isCoBorIntendToOccupyPropAsPRINo"]', timeout=10000)
+            page.click('label[for="isCoBorIntendToOccupyPropAsPRINo"]')
+            print(f"[INFO] Co-borrower intend to occupy property as primary: No selected.")
+            page.fill('#titleSeller', value=title_seller)
+            print(f"[INFO] Title seller '{title_seller}' filled.")
+            page.fill('#titleName', value=title_name)
+            print(f"[INFO] Title name '{title_name}' filled.")
+            page.fill('#titleOrderNumber', value=title_order_number)
+            print(f"[INFO] Title order number '{title_order_number}' filled.")
+            page.fill('#proInsFirstName_1', value=pro_ins_first_name_1)
+            print(f"[INFO] Pro insurance first name '{pro_ins_first_name_1}' filled.")
+            page.fill('#proInsLastName_1', value=pro_ins_last_name_1)
+            print(f"[INFO] Pro insurance last name '{pro_ins_last_name_1}' filled.")
+            page.fill('#proInsName_1', value=pro_ins_name_1)
+            print(f"[INFO] Pro insurance name '{pro_ins_name_1}' filled.")
+            page.fill('#proIncEmail_1', value=pro_inc_email_1)
+            print(f"[INFO] Pro insurance email '{pro_inc_email_1}' filled.")
+            page.fill('#proIncPh_1', value=pro_inc_ph_1)
+            print(f"[INFO] Pro insurance phone '{pro_inc_ph_1}' filled.")
 
         except PlaywrightTimeoutError as e:
             print(f"[ERROR] Timeout waiting for element: {e}")
