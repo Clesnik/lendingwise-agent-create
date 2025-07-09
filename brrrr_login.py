@@ -48,8 +48,7 @@ async def run_playwright(request: Request):
     data = await request.json()
     username = data.get("username", "")
     password = data.get("password", "")
-    loop = asyncio.get_event_loop()
-    loop.run_in_executor(None, main, username, password)  # run `main` in background
+    await run_in_threadpool(main, username, password)
     return {"status": "started"}
 
 if __name__ == "__main__":
