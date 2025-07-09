@@ -38,6 +38,7 @@ def main(
     unit_type_1_9, unit_num_1_9, sq_ft_1_9, rent_roll_market_rents_1_9, rent_roll_actual_rents_1_9, rent_roll_monthly_rent_1_9,
     unit_type_1_10, unit_num_1_10, sq_ft_1_10, rent_roll_market_rents_1_10, rent_roll_actual_rents_1_10, rent_roll_monthly_rent_1_10
 ):
+    print(f"[DEBUG] Username received: '{username}'", flush=True)
     with open("/tmp/fastapi_debug.log", "a") as f:
         f.write("MAIN FUNCTION CALLED\n")
         f.flush()
@@ -922,6 +923,8 @@ async def run_playwright(request: Request):
         data.get("rent_roll_actual_rents_1_10", ""),
         data.get("rent_roll_monthly_rent_1_10", "")
     ]
+
+    print(f"[DEBUG] Args list: {args}", flush=True)
 
     with open("/tmp/fastapi_debug.log", "a") as f:
         f.write("ENDPOINT HIT\n")
