@@ -14,29 +14,30 @@ def main(username, password):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
-        page.goto(url)
+        try:
+            page.goto(url, timeout=15000)
+            print("[INFO] Page loaded.", flush=True)
 
-        print("[INFO] Page loaded.", flush=True)
+            page.wait_for_selector('input#userName', timeout=10000)
+            print("[INFO] Found username input.", flush=True)
 
-        page.wait_for_selector('input#userName', timeout=10000)
-        print("[INFO] Found username input.", flush=True)
+            page.fill('input#userName', username)
+            print(f"[INFO] Filled username input with: {username}", flush=True)
 
-        page.fill('input#userName', username)
-        print(f"[INFO] Filled username input with: {username}", flush=True)
+            page.fill('input#pwd', password)
+            print(f"[INFO] Filled password input with: {password}", flush=True)
 
-        page.fill('input#pwd', password)
-        print(f"[INFO] Filled password input with: {password}", flush=True)
+            page.click('button#submitbutton')
+            print("[INFO] Clicked login button.", flush=True)
 
-        page.click('button#submitbutton')
-        print("[INFO] Clicked login button.", flush=True)
+            page.wait_for_timeout(2000)
+        except PlaywrightTimeoutError:
+            print("[ERROR] Timeout occurred during Playwright script.", flush=True)
+        finally:
+            browser.close()
+            print("[INFO] Browser closed.", flush=True)
 
-        page.wait_for_timeout(2000)  # optional wait for any response
 
-        browser.close()
-        print("[INFO] Browser closed.", flush=True)
-
-
-# --- FastAPI server entry ---
 from fastapi import FastAPI, Request
 import uvicorn
 from starlette.concurrency import run_in_threadpool
@@ -52,5 +53,4 @@ async def run_playwright(request: Request):
     return {"status": "started"}
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run("brrrr_login:app", host="0.0.0.0", port=8000, reload=True)
