@@ -724,6 +724,7 @@ def main(
 # --- FastAPI server entry ---
 from fastapi import FastAPI, Request
 import uvicorn
+from starlette.concurrency import run_in_threadpool
 
 app = FastAPI()
 
@@ -927,10 +928,9 @@ async def run_playwright(request: Request):
         f.write(f"ARGS: {args}\n")
         f.flush()
 
-    # Just call main() directly:
     try:
         print("ARGS:", args, flush=True)
-        main(*args)
+        await run_in_threadpool(main, *args)
     except Exception as e:
         print("ERROR IN MAIN:", e, flush=True)
         raise
