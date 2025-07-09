@@ -2,6 +2,7 @@ import sys
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 import json
 import tempfile
+import asyncio
 
 def main(username, password):
     print(f"[DEBUG] Username: {username}", flush=True)
@@ -32,9 +33,9 @@ async def run_playwright(request: Request):
     data = await request.json()
     username = data.get("username", "")
     password = data.get("password", "")
-    print(f"[DEBUG] Received: {username}, {password}", flush=True)
-    await run_in_threadpool(main, username, password)
-    return {"status": "done"}
+    loop = asyncio.get_event_loop()
+    loop.run_in_executor(None, main, username, password)  # run `main` in background
+    return {"status": "started"}
 
 if __name__ == "__main__":
     import uvicorn
