@@ -38,7 +38,9 @@ def main(
     unit_type_1_9, unit_num_1_9, sq_ft_1_9, rent_roll_market_rents_1_9, rent_roll_actual_rents_1_9, rent_roll_monthly_rent_1_9,
     unit_type_1_10, unit_num_1_10, sq_ft_1_10, rent_roll_market_rents_1_10, rent_roll_actual_rents_1_10, rent_roll_monthly_rent_1_10
 ):
-    print("MAIN FUNCTION CALLED")
+    with open("/tmp/fastapi_debug.log", "a") as f:
+        f.write("MAIN FUNCTION CALLED\n")
+        f.flush()
     url = "https://app.brrrr.com/backoffice/LMRequest.php?eOpt=0&cliType=PC&tabOpt=QAPP&moduleCode=HMLO&supp=help"
     print(f"[INFO] Launching browser and navigating to {url}")
     with sync_playwright() as p:
@@ -727,7 +729,6 @@ app = FastAPI()
 
 @app.post("/run-playwright")
 async def run_playwright(request: Request):
-    print("ENDPOINT HIT", flush=True)
     data = await request.json()
 
     # Turn JSON dict into ordered args for main()
@@ -781,6 +782,11 @@ async def run_playwright(request: Request):
         data.get("entity_zip", "")
     ]
 
+    with open("/tmp/fastapi_debug.log", "a") as f:
+        f.write("ENDPOINT HIT\n")
+        f.write(f"ARGS: {args}\n")
+        f.flush()
+
     # Just call main() directly:
     try:
         print("ARGS:", args, flush=True)
@@ -788,7 +794,7 @@ async def run_playwright(request: Request):
     except Exception as e:
         print("ERROR IN MAIN:", e, flush=True)
         raise
-    return {"status": "done"}
+    return {"status": "done", "args": args}
 
 if __name__ == "__main__":
     import sys
